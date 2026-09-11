@@ -1,0 +1,17 @@
+.active {
+  color: black;
+}
+
+a {
+  color: gray;
+}
+
+a:hover {
+  color: unset;
+}
+
+input:focus {
+  outline: none;
+  box-shadow: none;
+  border-color: #dee2e6;
+}

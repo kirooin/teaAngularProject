@@ -1,1 +1,96 @@
-/* You can add global styles to this file, and also import other style files */
+html, body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+.ui-widget-content {
+  border: none !important;
+}
+
+
+
+.single-item {
+  position: relative;
+}
+
+.slick-container {
+  height: 640px;
+}
+
+.carousel-control-prev-icon {
+  background-image: url("data:/assets/images/arrow-left.png");
+}
+
+
+.slick-prev {
+  left: 30px;
+  top: 320px;
+  background: url('/assets/images/arrow-left.png') no-repeat;
+  width: 43px;
+  height: 40px;
+  border: none;
+  position: absolute;
+  z-index: 9999;
+  font-size: 0;
+}
+
+.slick-next {
+  right: 5px;
+  top: 320px;
+  background: url('/assets/images/arrow-right.png') no-repeat;
+  width: 43px;
+  height: 40px;
+  border: none;
+  font-size: 0;
+  position: absolute;
+  z-index: 9999;
+}
+
+.slick-prev:before,
+.slick-next:before {
+  display: none;
+}
+
+.ui-accordion .ui-accordion-header {
+  border-radius: 10px;
+  padding: 5px 20px 5px 20px;
+  height: 58px;
+}
+
+.ui-accordion .ui-accordion-content {
+  border-radius: 10px;
+  border: none;
+}
+
+.ui-state-active {
+  background: linear-gradient(180deg, #076BFF, #007BFF);
+}
+
+
+.custom-header-icon {
+  background-image: url('/assets/images/arrowDown.svg') !important;
+  background-position: 98% center;
+  background-repeat: no-repeat;
+  width: 20px;
+  height: 20px;
+  position: absolute !important;
+  right: 27px !important;
+  top: 42% !important;
+
+}
+
+.custom-active-header-icon {
+  background-image: url('/assets/images/arrowUp.svg') !important;
+  background-position: 98% center;
+  background-repeat: no-repeat;
+  width: 20px;
+  height: 20px;
+  position: absolute !important;
+  right: 27px !important;
+  top: 42% !important;
+}
+
+.ui-accordion .ui-accordion-header {
+  position: relative;
+}
+

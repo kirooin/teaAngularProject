@@ -1,0 +1,11 @@
+<div class="popup-overlay" *ngIf="isOpen" (click)="onClose()">
+  <div class="popup-content" (click)="$event.stopPropagation()">
+    <div class="popup-header d-flex justify-content-between align-items-center p-3 border-bottom">
+      <h6 class="mb-0">Посмотрите наши чайные коллекции</h6>
+      <button type="button" class="btn-close" (click)="onClose()"></button>
+    </div>
+    <div class="popup-body p-4 d-flex justify-content-center">
+      <button type="button" class="btn btn-outline-primary w-50" routerLink="/product">Смотреть</button>
+    </div>
+  </div>
+</div>
