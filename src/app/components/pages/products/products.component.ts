@@ -12,13 +12,11 @@ export class ProductsComponent implements OnInit {
   products: ProductType[] = [];
 
   constructor(private productService: ProductService, private activatedRoute: ActivatedRoute) {
-
   }
 
   ngOnInit(): void {
    this.productService.getProducts().subscribe(data => {
      this.products = data;
-     console.log(this.products);
    })
   }
 }

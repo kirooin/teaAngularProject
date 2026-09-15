@@ -11,6 +11,8 @@ import { PopupComponent } from './components/common/popup/popup.component';
 import { ProductCardComponent } from './components/common/product-card/product-card.component';
 import {ProductService} from "./service/product.service";
 import {HttpClientModule} from "@angular/common/http";
+import { ProductComponent } from './components/pages/product/product.component';
+import { OrderComponent } from './components/pages/order/order.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,8 @@ import {HttpClientModule} from "@angular/common/http";
     ProductsComponent,
     PopupComponent,
     ProductCardComponent,
+    ProductComponent,
+    OrderComponent,
   ],
   imports: [
     BrowserModule,
