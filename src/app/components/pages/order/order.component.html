@@ -1,58 +1,147 @@
+<div class="container my-5 py-5" [class.d-none]="hideForm">
+  <div >
+    <h3 class="text-center fw-bold mb-5">Сделать заказ</h3>
+    <div class="d-flex justify-content-center wow animate__bounceIn">
+      <form class="col-md-8 col-lg-6 needs-validation" novalidate [formGroup]="orderForm">
+        <div class="row mb-3">
+          <div class="col-12">
+            <label for="product" class="form-label">Товар</label>
+            <input id="product" type="text" class="form-control" name="product" formControlName="product">
+            <div class="invalid-feedback"
+                 *ngIf="orderForm.get('product')?.invalid && (orderForm.get('product')?.touched || orderForm.get('product')?.dirty) && orderForm.get('product')?.errors?.['required']">
+              Товар должен быть заполнен.
+            </div>
+          </div>
+        </div>
 
-<div class="container h-100 my-5 py-5">
-  <h3 class="text-center fw-bold mb-5">Сделать заказ</h3>
-  <div class="d-flex justify-content-center wow animate__bounceIn">
-    <form class="col-md-8 col-lg-6" id="form">
-      <div class="row mb-3">
-        <div class="col-12">
-          <label for="firstName" class="form-label">Товар</label>
-          <input type="text" class="form-control form-submit">
-        </div>
-      </div>
+        <div class="row mb-3" formGroupName="userInfo">
+          <div class="col-md-4">
+            <label for="firstName" class="form-label">Имя</label>
+            <input id="firstName" type="text" class="form-control" formControlName="firstName">
+            <div
+              *ngIf="userInfoName?.invalid && (userInfoName?.touched || userInfoName?.dirty)"
+            >
+              <div class="invalid-feedback"
+                   *ngIf=" userInfoName?.errors?.['required']">
+                Имя должно быть заполнено.
+              </div>
+              <div class="invalid-feedback"
+                   *ngIf="userInfoName?.errors?.['pattern']">
+                Только буквы.
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <label for="lastName" class="form-label">Фамилия</label>
+            <input type="text" class="form-control form-submit" id="lastName" formControlName="lastName">
 
-      <div class="row mb-3">
-        <div class="col-md-4">
-          <label for="firstName" class="form-label">Имя</label>
-          <input type="text" class="form-control form-submit" id="firstName">
+            <div
+              *ngIf="userInfoLastName?.invalid && (userInfoLastName?.touched || userInfoLastName?.dirty)"
+            >
+              <div class="invalid-feedback"
+                   *ngIf=" userInfoLastName?.errors?.['required']">
+                Имя должно быть заполнено.
+              </div>
+              <div class="invalid-feedback"
+                   *ngIf="userInfoLastName?.errors?.['pattern']">
+                Только буквы.
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <label for="phone" class="form-label">Телефон</label>
+            <input type="tel" class="form-control form-submit" id="phone" formControlName="number">
+            <div
+              *ngIf="userInfoNumber?.invalid && (userInfoNumber?.touched || userInfoNumber?.dirty)"
+            >
+              <div class="invalid-feedback"
+                   *ngIf=" userInfoNumber?.errors?.['required']">
+                Номер должен быть заполнен.
+              </div>
+              <div class="invalid-feedback"
+                   *ngIf="userInfoNumber?.errors?.['phoneInvalidChars']">
+                Только + и цифры.
+              </div>
+              <div class="invalid-feedback"
+                   *ngIf="userInfoNumber?.errors?.['phoneWrongLength'] as err">
+                Нужно {{ err.required }} цифр (сейчас {{ err.actual }})
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="col-md-4">
-          <label for="lastName" class="form-label">Фамилия</label>
-          <input type="text" class="form-control form-submit" id="lastName">
-        </div>
-        <div class="col-md-4">
-          <label for="phone" class="form-label">Телефон</label>
-          <input type="tel" class="form-control form-submit" id="phone">
-        </div>
-      </div>
 
-      <div class="row mb-3">
-        <div class="col-md-6">
-          <label for="country" class="form-label">Страна</label>
-          <input type="text" class="form-control form-submit" id="country">
+        <div class="row mb-3" formGroupName="geoInfo">
+          <div class="col-md-6">
+            <label for="country" class="form-label">Страна</label>
+            <input type="text" class="form-control form-submit" id="country" formControlName="country">
+            <div
+              *ngIf="geoInfoCountry?.invalid && (geoInfoCountry?.touched || geoInfoCountry?.dirty)"
+            >
+              <div class="invalid-feedback"
+                   *ngIf=" geoInfoCountry?.errors?.['required']">
+                Страна должна быть заполнена.
+              </div>
+              <div class="invalid-feedback"
+                   *ngIf="geoInfoCountry?.errors?.['pattern']">
+                Только буквы.
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <label for="zipCode" class="form-label">Индекс</label>
+            <input type="text" class="form-control form-submit" id="zipCode" formControlName="zipCode">
+            <div
+              *ngIf="geoInfoZipCode?.invalid && (geoInfoZipCode?.touched || geoInfoZipCode?.dirty)"
+            >
+              <div class="invalid-feedback"
+                   *ngIf=" geoInfoZipCode?.errors?.['required']">
+                Номер должен быть заполнен.
+              </div>
+              <div class="invalid-feedback"
+                   *ngIf="geoInfoZipCode?.errors?.['pattern']">
+                Максимум 6 цифр.
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="col-md-6">
-          <label for="zipCode" class="form-label">Индекс</label>
-          <input type="text" class="form-control form-submit" id="zipCode">
-        </div>
-      </div>
 
-      <div class="row mb-3">
-        <div class="col-12">
-          <label for="address" class="form-label">Адрес</label>
-          <input type="text" class="form-control form-submit" id="address">
+        <div class="row mb-3" formGroupName="geoInfo">
+          <div class="col-12">
+            <label for="address" class="form-label">Адрес</label>
+            <input type="text" class="form-control form-submit" id="address" formControlName="address">
+            <div
+              *ngIf="geoInfoAddress?.invalid && (geoInfoAddress?.touched || geoInfoAddress?.dirty)"
+            >
+              <div class="invalid-feedback"
+                   *ngIf=" geoInfoAddress?.errors?.['required']">
+                Адрес должен быть заполнен.
+              </div>
+              <div class="invalid-feedback"
+                   *ngIf="geoInfoAddress?.errors?.['pattern']">
+                Только буквы, цифры, пробелы, дефис и слеш.
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
 
-      <div class="row mb-3">
-        <div class="col-12">
-          <label for="address" class="form-label">Комментарий к заказу</label>
-          <input type="text" class="form-control form-submit">
+        <div class="row mb-3">
+          <div class="col-12">
+            <label class="form-label">Комментарий к заказу</label>
+            <input type="text" class="form-control form-submit" formControlName="comment">
+          </div>
         </div>
-      </div>
 
-      <div>
-        <button class="btn btn-primary w-25  px-0" id="submit" type="submit">Отправить</button>
-      </div>
-    </form>
+        <div class="d-flex align-items-center">
+          <button class="btn btn-primary w-25  px-0 me-4" id="submit" type="button" (click)="createOrder()" [disabled]="isLoading">Отправить
+          </button>
+          <div class="text-danger" [class.d-none]="!errMessageNone">
+            Произошла ошибка. Попробуйте еще раз.
+          </div>
+        </div>
+      </form>
+    </div>
   </div>
+</div>
+<div class="container min-vh-100 d-flex justify-content-center align-items-center" [class.d-none]="!hideForm">
+  <h1 class="text-center fw-bold" >Спасибо за заказ!</h1>
 </div>
