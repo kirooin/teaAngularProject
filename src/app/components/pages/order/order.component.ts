@@ -2,7 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, Validators} from "@angular/forms";
 import {ActivatedRoute} from "@angular/router";
 import {CustomValidators} from "../../../shared/custom-validators";
-import {delay, finalize, Subscription} from "rxjs";
+import {Subscription} from "rxjs";
 import {ProductService} from "../../../service/product.service";
 
 @Component({
@@ -15,8 +15,7 @@ export class OrderComponent implements OnInit, OnDestroy {
   private subscriptionOrder: Subscription | null = null;
 
   orderForm = this.fb.group({
-    product: [{value: '', disabled: true}, Validators.required],
-    userInfo: this.fb.group({
+    product: [{value: '', disabled: true}, Validators.required],    userInfo: this.fb.group({
       firstName: ['', [Validators.required, Validators.pattern('^[A-Za-zА-Яа-я]+$')]],
       lastName: ['', [Validators.required, Validators.pattern('^[A-Za-zА-Яа-я]+$')]],
       number: ['', [Validators.required, CustomValidators.phoneValidator()]],
@@ -34,9 +33,8 @@ export class OrderComponent implements OnInit, OnDestroy {
   constructor(private fb: FormBuilder, private activatedRoute: ActivatedRoute, private productService: ProductService) {
   }
 
-  hideForm = false;
-  errMessageNone = false;
-  isLoading = false;
+  hideForm: boolean = false;
+  errMessageNone: boolean = false;
 
   ngOnInit(): void {
     this.activatedRoute.queryParams.subscribe(params => {
@@ -48,7 +46,7 @@ export class OrderComponent implements OnInit, OnDestroy {
     })
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.subscriptionOrder?.unsubscribe();
   }
 
@@ -66,11 +64,6 @@ export class OrderComponent implements OnInit, OnDestroy {
         address: formValue.geoInfo.address ?? '',
         comment: formValue.comment ?? '',
       }
-    ).pipe(
-      finalize(() => {
-        this.isLoading = false
-        console.log('Button is blocked')
-      }),
     ) .subscribe(response => {
       console.log()
       if (response.success && response.success === 1 && !response.message) {

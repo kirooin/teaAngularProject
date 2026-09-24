@@ -7,9 +7,9 @@
       <li><a href="#" class="nav-link px-2 " routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Главная</a></li>
       <li><a href="#" class="nav-link px-2 " routerLink="/products" routerLinkActive="active">Каталог</a></li>
     </ul>
-    <form class="row align-items-center mb-3 mb-lg-0 me-0" role="search">
-      <input type="text" class="form-control col me-2 pe-5 ps-3" placeholder="Поиск чая">
-      <button type="button" class="btn btn-outline-primary col px-0">Найти</button>
+    <form class="row align-items-center mb-3 mb-lg-0 me-0" role="search" (ngSubmit)="onSearch()">
+      <input type="text" class="form-control col me-2 pe-5 ps-3" placeholder="Поиск чая" [(ngModel)]="searchQuery" name="searchQuery">
+      <button class="btn btn-outline-primary col px-0" >Найти</button>
     </form>
   </div>
 </header>
